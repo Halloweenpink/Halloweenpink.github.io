@@ -30,6 +30,7 @@ header {
 
 nav {
     text-align: center; /* 居中导航栏内的内容 */
+    background-color: rgba(51, 51, 51, 0.4);
 }
 
 nav ul {
@@ -82,7 +83,7 @@ section {
 }
 
 footer {
-    background-color: #333;
+    background-color: #364a6299;
     color: white;
     text-align: center;
     padding: 1px;
