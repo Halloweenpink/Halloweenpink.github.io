@@ -23,9 +23,13 @@ body::before {
 /* 头部和导航样式 */
 header {
     background-color: #333;
-    color: #fff;
-    padding: 20px;
+    color: #91B5A9;
+    padding: 7px;
     text-align: center;
+}
+
+nav {
+    text-align: center; /* 居中导航栏内的内容 */
 }
 
 nav ul {
@@ -42,12 +46,33 @@ nav ul li a {
     text-decoration: none;
     padding: 15px;
     display: inline-block;
-    color: white;
+    color: #B6CAD7;
     transition: background-color 0.3s;
 }
 
 nav ul li a:hover {
+    /* 当鼠标悬停在链接上时，链接的背景颜色会变 */
     background-color: #555;
+}
+
+section {
+    text-align: center; /* 居中导航栏内的内容 */
+}
+
+section p {
+    font-family: 'SimSun', '宋体', serif;
+    color: floralwhite
+}
+section div{
+    color: floralwhite
+}
+section div li{
+    padding: 5px;
+    font-family: 'SimSun', '宋体', serif;
+}
+
+section div li {
+    color: floralwhite
 }
 
 /* 主要部分和版权样式 */
@@ -60,7 +85,7 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 1px;
     position: fixed;
     bottom: 0;
     width: 100%;
