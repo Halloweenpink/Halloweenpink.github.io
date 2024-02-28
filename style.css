@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('background.jpg'); /* 替换 'background.jpg' 为您的图片文件名 */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 这里的最后一个值是透明度，0.5表示半透明 */
+    z-index: -1;
+}
+
+/* 头部和导航样式 */
+header {
+    background-color: #333;
+    color: #91B5A9;
+    padding: 7px;
+    text-align: center;
+}
+
+nav {
+    text-align: center; /* 居中导航栏内的内容 */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    background-color: #444;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    padding: 15px;
+    display: inline-block;
+    color: #B6CAD7;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    /* 当鼠标悬停在链接上时，链接的背景颜色会变 */
+    background-color: #555;
+}
+
+section {
+    text-align: center; /* 居中导航栏内的内容 */
+}
+
+section p {
+    font-family: 'SimSun', '宋体', serif;
+    color: floralwhite
+}
+section div{
+    color: floralwhite
+}
+section div li{
+    padding: 5px;
+    font-family: 'SimSun', '宋体', serif;
+}
+
+section div li {
+    color: floralwhite
+}
+
+/* 主要部分和版权样式 */
+section {
+    padding: 20px;
+    margin: 10px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* 图片样式 */
+img {
+    max-width: 100%;
+    height: auto;
+}
