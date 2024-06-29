@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1000px;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        form label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        form input, form select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        form input:focus, form select:focus {
+            border-color: #4facfe;
+            outline: none;
+            box-shadow: 0 0 5px rgba(79, 172, 254, 0.5);
+        }
+        form button {
+            padding: 15px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s;
+        }
+        form button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .back:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Staff Management</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Sex</th>
+                    <th>Time</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>ID Card</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in staff %}
+                <tr>
+                    <td>{{ member.sid }}</td>
+                    <td>{{ member.sname }}</td>
+                    <td>{{ member.ssex }}</td>
+                    <td>{{ member.stime }}</td>
+                    <td>{{ member.susername }}</td>
+                    <td>{{ member.srole }}</td>
+                    <td>{{ member.sidcard }}</td>
+                    <td>{{ member.sphone }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Add New Staff</h2>
+        <form action="{{ url_for('staff_management') }}" method="post">
+            <label for="sid">ID:</label>
+            <input type="text" id="sid" name="sid" required>
+
+            <label for="sname">Name:</label>
+            <input type="text" id="sname" name="sname" required>
+
+            <label for="ssex">Sex:</label>
+            <select id="ssex" name="ssex" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label for="stime">Time:</label>
+            <input type="date" id="stime" name="stime" required>
+
+            <label for="susername">Username:</label>
+            <input type="text" id="susername" name="susername" required>
+
+            <label for="spassword">Password:</label>
+            <input type="password" id="spassword" name="spassword" required>
+
+            <label for="srole">Role:</label>
+            <input type="text" id="srole" name="srole" required>
+
+            <label for="sidcard">ID Card:</label>
+            <input type="text" id="sidcard" name="sidcard" required>
+
+            <label for="sphone">Phone:</label>
+            <input type="text" id="sphone" name="sphone" required>
+
+            <button type="submit">Add Staff</button>
+        </form>
+
+        <a class="back" href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+</body>
+</html>

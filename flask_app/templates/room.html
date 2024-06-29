@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1000px;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        form label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        form input, form select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        form input:focus, form select:focus {
+            border-color: #4facfe;
+            outline: none;
+            box-shadow: 0 0 5px rgba(79, 172, 254, 0.5);
+        }
+        form button {
+            padding: 15px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s;
+        }
+        form button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .back:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Room Management</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Room ID</th>
+                    <th>Type</th>
+                    <th>Storey</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Picture</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for room in rooms %}
+                <tr>
+                    <td>{{ room.rid }}</td>
+                    <td>{{ room.rtype }}</td>
+                    <td>{{ room.rstorey }}</td>
+                    <td>{{ room.rprice }}</td>
+                    <td>{{ room.rdesc }}</td>
+                    <td><img src="{{ room.rpic }}" alt="Room Picture" width="100"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Add New Room</h2>
+        <form action="{{ url_for('room_management') }}" method="post">
+            <label for="rid">Room ID:</label>
+            <input type="text" id="rid" name="rid" required>
+
+            <label for="rtype">Type:</label>
+            <input type="text" id="rtype" name="rtype" required>
+
+            <label for="rstorey">Storey:</label>
+            <input type="text" id="rstorey" name="rstorey" required>
+
+            <label for="rprice">Price:</label>
+            <input type="text" id="rprice" name="rprice" required>
+
+            <label for="rdesc">Description:</label>
+            <input type="text" id="rdesc" name="rdesc" required>
+
+            <label for="rpic">Picture URL:</label>
+            <input type="text" id="rpic" name="rpic" required>
+
+            <button type="submit">Add Room</button>
+        </form>
+
+        <h2>Modify or Delete Room</h2>
+        <form action="{{ url_for('room_management') }}" method="post">
+            <input type="hidden" name="_method" value="PUT">
+            <label for="rid_modify">Room ID:</label>
+            <input type="text" id="rid_modify" name="rid_modify" required>
+
+            <label for="column_modify">Column to Modify:</label>
+            <select id="column_modify" name="column_modify" required>
+                <option value="rtype">Type</option>
+                <option value="rstorey">Storey</option>
+                <option value="rprice">Price</option>
+                <option value="rdesc">Description</option>
+                <option value="rpic">Picture URL</option>
+            </select>
+
+            <label for="value_modify">New Value:</label>
+            <input type="text" id="value_modify" name="value_modify" required>
+
+            <button type="submit">Modify Room</button>
+        </form>
+
+        <form action="{{ url_for('room_management') }}" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <label for="rid_delete">Room ID to Delete:</label>
+            <input type="text" id="rid_delete" name="rid_delete" required>
+
+            <button type="submit">Delete Room</button>
+        </form>
+
+        <a class="back" href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+</body>
+</html>
